@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dog's Virtual World</title>
+    <link rel="icon" type="image/png" href="dog.png" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #6093cb;
+        text-align: center;
+        margin-top: 45px;
+        min-width: 500px;
+      }
+      #title {
+        color: black;
+      }
+
+      #story {
+        color: black;
+        font-size: large;
+      }
+      .box {
+        background-color: #d9e3ec;
+        width: 450px;
+        height: auto;
+        margin: 0 auto;
+        border-radius: 15px;
+        padding: 5px;
+        padding-bottom: 50px;
+      }
+      .box h1 {
+        margin-bottom: 5px;
+      }
+      .box img {
+        display: block;
+        margin: 0 auto 10px;
+      }
+      .box button {
+        margin: 8px auto;
+      }
+      .bar {
+        background-color: white;
+        width: 300px;
+        height: 15px;
+        margin: auto;
+        border-radius: 20px;
+      }
+
+      .fill {
+        background-color: #65bde9;
+        height: 15px;
+        width: 10%;
+        border-radius: 20px;
+      }
+      button {
+        background-color: #65bde9;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 7px;
+        font-size: 15px;
+        cursor: pointer;
+      }
+      input {
+        outline: none;
+        font-size: 25px;
+        border-radius: 5px;
+        margin: 0 auto 25px;
+        text-align: center;
+      }
+      #nameButton {
+        display: block;
+        margin: 0 auto;
+        font-size: 20px;
+        margin-bottom: 20px;
+        margin-top: -10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="title">Dog's Virtual World</h1>
+    <p id="story">
+      You found this dog in a dark place, where no one goes<br />
+      Help entertain, rest and feed your dog
+    </p>
+
+    <h1 id="dog">Name your Dog:</h1>
+    <input id="dogName" />
+    <button id="nameButton">Confirm</button>
+
+    <div class="box">
+      <h1 id="name"></h1>
+      <img src="dog.png" width="200" />
+
+      <button id="playButton" onclick="play()">🎾 Play</button>
+      <button id="sleepButton" onclick="sleep()">💤 Sleep</button>
+      <button id="feedButton" onclick="feed()">🍖 Feed</button>
+
+      <h2>❤️ Happiness</h2>
+      <p id="happy">10%</p>
+
+      <div class="bar">
+        <div class="fill" id="happyBar"></div>
+      </div>
+
+      <h2>⚡️ Energy</h2>
+      <p id="energy">10%</p>
+
+      <div class="bar">
+        <div class="fill" id="energyBar"></div>
+      </div>
+
+      <h2>🍖 Hunger</h2>
+      <p id="hunger">10%</p>
+
+      <div class="bar">
+        <div class="fill" id="hungerBar"></div>
+      </div>
+    </div>
+
+    <script>
+      let happy = 10;
+      let energy = 10;
+      let hunger = 10;
+
+      document.querySelector("#nameButton").addEventListener("click", () => {
+        document.querySelector("#name").textContent =
+          document.querySelector("#dogName").value;
+        document.querySelector("#dogName").style.display = "none";
+        document.querySelector("#nameButton").style.display = "none";
+        document.querySelector("#dog").style.display = "none";
+      });
+
+      function play() {
+        happy = Math.min(100, happy + 15);
+        energy = Math.max(0, energy - 15);
+        hunger = Math.max(0, hunger - 25);
+        document.querySelector("#happy").textContent = happy + "%";
+        document.querySelector("#happyBar").style.width = happy + "%";
+        document.querySelector("#energy").textContent = energy + "%";
+        document.querySelector("#energyBar").style.width = energy + "%";
+        document.querySelector("#hunger").textContent = hunger + "%";
+        document.querySelector("#hungerBar").style.width = hunger + "%";
+      }
+      function sleep() {
+        happy = Math.max(0, happy - 75);
+        energy = Math.min(100, energy + 25);
+        hunger = Math.max(0, hunger - 50);
+        document.querySelector("#happy").textContent = happy + "%";
+        document.querySelector("#happyBar").style.width = happy + "%";
+        document.querySelector("#energy").textContent = energy + "%";
+        document.querySelector("#energyBar").style.width = energy + "%";
+        document.querySelector("#hunger").textContent = hunger + "%";
+        document.querySelector("#hungerBar").style.width = hunger + "%";
+      }
+      function feed() {
+        happy = Math.min(100, happy + 5);
+        energy = Math.min(100, energy + 15);
+        hunger = Math.min(100, hunger + 10);
+        document.querySelector("#happy").textContent = happy + "%";
+        document.querySelector("#happyBar").style.width = happy + "%";
+        document.querySelector("#energy").textContent = energy + "%";
+        document.querySelector("#energyBar").style.width = energy + "%";
+        document.querySelector("#hunger").textContent = hunger + "%";
+        document.querySelector("#hungerBar").style.width = hunger + "%";
+      }
+    </script>
+  </body>
+</html>
